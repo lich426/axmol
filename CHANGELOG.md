@@ -15,9 +15,11 @@
 ### Mark as deprecated
 
 - `AsyncTaskPool`, use `JobSystem` instead.
+- `AXLOG`, `AXLOGINFO`, `AXLOGWARN`, `AXLOGERROR`, use `AXLOGD`, `AXLOGI`, `AXLOGE` instead.
 
 ### Bug Fixes
 
+- Fix call to incorrect java method by @rh101 in https://github.com/axmolengine/axmol/pull/2015
 - Fix Callback and store Renderer Image type by @AlexandreK38 in https://github.com/axmolengine/axmol/pull/1945
 - Fix char8_t not disable on msvc by @halx99
 - Fix Renderer recreated by @smilediver in https://github.com/axmolengine/axmol/pull/1988
