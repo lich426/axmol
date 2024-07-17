@@ -32,7 +32,7 @@
 
 ## Clipper2
 - [![Upstream](https://img.shields.io/github/v/tag/AngusJohnson/Clipper2?label=Upstream)](https://github.com/AngusJohnson/Clipper2)
-- Version: 1.3.0
+- Version: 1.4.0
 - License: BSL-1.0
 
 ## ConcurrentQueue
@@ -62,7 +62,7 @@
 
 ## {fmt}
 - [![Upstream](https://img.shields.io/github/v/release/fmtlib/fmt?label=Upstream)](https://github.com/fmtlib/fmt)
-- Version: 11.0.0
+- Version: 11.0.1
 - License: MIT
 
 ## FreeType
@@ -108,7 +108,7 @@
 ## lua
 - plainlua
   - [![Upstream](https://img.shields.io/github/v/release/lua/lua?label=Upstream)](https://github.com/lua/lua) http://www.lua.org/
-  - Version: 5.4.6
+  - Version: 5.4.7
   - License: MIT (http://www.lua.org/license.html)
   
 - sol2
@@ -213,7 +213,7 @@
 
 ## simdjson
 - [![Upstream](https://img.shields.io/github/v/tag/simdjson/simdjson?label=Upstream)](https://github.com/simdjson/simdjson)
-- Version: 3.9.4
+- Version: 3.9.5
 - License: Apache-2.0
 
 ## stb (stb_image)

@@ -16,6 +16,11 @@
 
 - `AsyncTaskPool`, use `JobSystem` instead.
 - `AXLOG`, `AXLOGINFO`, `AXLOGWARN`, `AXLOGERROR`, use `AXLOGD`, `AXLOGI`, `AXLOGE` instead.
+  - Mark AXLOG, AXLOGINFO, AXLOGWARN, AXLOGERROR deprecated in https://github.com/axmolengine/axmol/pull/2017
+  - Rename all AXLOG/printf to AXLOGD (without .\core, .\3rdparty) by @aismann in https://github.com/axmolengine/axmol/pull/2020
+  - Set several log messages to verbose level by @rh101 in https://github.com/axmolengine/axmol/pull/2021
+  - Change AXLOGI to more appropriate AXLOGD for several log calls by @rh101 in https://github.com/axmolengine/axmol/pull/2028
+- `StringUtils::format`, use `fmt::format` instead.
 
 ### Bug Fixes
 
@@ -25,6 +30,8 @@
 - Fix Renderer recreated by @smilediver in https://github.com/axmolengine/axmol/pull/1988
 - Fix AvfMediaEngine assetion when play some HLS video files by @halx99 in https://github.com/axmolengine/axmol/issues/1984
 - Fix compiling errors when on linux ubuntu2204 by @bwaiox in https://github.com/axmolengine/axmol/pull/2012
+- Fix prebuilt, add ax_link_ext macro by @iAndyHD3 in https://github.com/axmolengine/axmol/pull/2022
+- Fix #1943, Make extension luabinding can be controlled by AX_EXT_HINT by @halx99, reported by @iAndyHD3
 
 ### Improvements
 
@@ -50,19 +57,23 @@
 - Don't output log when custom ILogOutput was set by @halx99
 - Use new logging system for audio by @halx99
 - Update DrawNodeV2 0.94 by @aismann in https://github.com/axmolengine/axmol/pull/2008
+- Ensure the RenderTexture reference is valid on threaded saveToFile task completion by @rh101 in https://github.com/axmolengine/axmol/pull/2024
+
 
 ### sdks & tools updates
 
 - gradle: 8.7 ==> 8.8
 - AGP: 8.2.2 ==> 8.4.0
-- emsdk: 3.1.59 ==> 3.1.61
+- emsdk: 3.1.59 ==> 3.1.63
 
 ### 3rdparty Updates
 
-- simdjson: 3.9.2 ==> 3.9.4
-- fmtlib: 10.2.1 ==> 11.0.0
+- Clipper2: 1.3.0 ==> 1.4.0
+- simdjson: 3.9.2 ==> 3.9.5
+- fmtlib: 10.2.1 ==> 11.0.1
 - yasio: 4.2.2 ==> 4.2.3
 - oboe: 1.8.1 ==> 1.9.0
+- plainlua: 5.4.6 ==> 5.4.7
 
 ## axmol-2.1.3 May.26 2024
 
@@ -138,6 +149,7 @@
 
 ### Improvements
 
+- Update ios/tvos LaunchScreen.storyboard to 11.0+, also fix xcode15.4 build error
 - Update prebuilt tool `glslcc` to 1.9.5, macos-arm64 support and built for macos-10.15+
 - Improve MediaPlayer: handle video rotation properly
 - Disable c++20 char8_t
