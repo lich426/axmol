@@ -3,7 +3,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
- 
+
  https://axmol.dev/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,8 +25,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __cocos2d_libs__CCEventListenerFocus__
-#define __cocos2d_libs__CCEventListenerFocus__
+#ifndef _AX_EVENTLISTENERFOCUS_H_
+#define _AX_EVENTLISTENERFOCUS_H_
 
 #include "base/EventListener.h"
 
@@ -80,4 +80,4 @@ NS_AX_END
 // end of base group
 /// @}
 
-#endif /* defined(__cocos2d_libs__CCEventListenerFocus__) */
+#endif /* defined(_AX_EVENTLISTENERFOCUS_H_) */

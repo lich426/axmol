@@ -3,7 +3,7 @@
 # Copyright (c) 2014 martell malone
 # Copyright (c) 2015-2017 Chukong Technologies Inc.
 # Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
-# 
+#
 # https://axmol.dev/
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -178,7 +178,7 @@ configure_file(
         "${CMAKE_CURRENT_LIST_DIR}/axmolver.h.in"
         "${CMAKE_CURRENT_LIST_DIR}/axmolver.h" @ONLY)
 
-# early experimental features     
+# early experimental features
 # include(CMakeDependentOption)
 # cmake_dependent_option(AX_ENABLE_EARLY_FEATURES
 #   "Build the tests when we are the root project" ON
@@ -359,16 +359,16 @@ if(XCODE OR VS)
 endif()
 
 message("CMake ${_AX_CORE_LIB} target_precompile_headers")
-target_precompile_headers(${_AX_CORE_LIB} PRIVATE 
+target_precompile_headers(${_AX_CORE_LIB} PRIVATE
   "$<$<COMPILE_LANGUAGE:CXX>:axmol.h>"
 )
 
 if(WINDOWS)
     # cppwinrt or webview2 require nuget
     if(WINDOWS_STORE OR AX_ENABLE_MSEDGE_WEBVIEW2)
-        find_program(NUGET_EXE NAMES nuget 
+        find_program(NUGET_EXE NAMES nuget
             PATHS ${_AX_ROOT}/tools/external/nuget)
-            
+
         if(NOT NUGET_EXE)
             message("NUGET.EXE not found.")
             message(FATAL_ERROR "Please run setup.ps1 again to download NUGET.EXE, and run CMake again.")
@@ -400,9 +400,43 @@ if(WINDOWS)
     endif()
 endif()
 
-# AX_USE_SSE
-if (AX_ISA_SIMD MATCHES "sse")
-    target_compile_definitions(${_AX_CORE_LIB} PUBLIC AX_USE_SSE=1)
+# axmol math simd intrinsics support
+set(_simdc_defines)
+set(_simdc_options)
+if (NOT WASM) # native platforms auto detect from cmake or preprocessor check
+    if (AX_ISA_SIMD MATCHES "sse")
+        list(APPEND _simdc_defines AX_SSE_INTRINSICS=1)
+        if (AX_ISA_SIMD MATCHES "sse4")
+            list(APPEND _simdc_defines __SSE4_1__=1)
+            if (LINUX)
+                list(APPEND _simdc_options -msse4.1)
+            endif()
+        endif()
+    endif()
+else() # wasm requires user specify SIMD intrinsics manually
+    set(AX_WASM_ISA_SIMD "none" CACHE STRING "")
+    string(TOLOWER ${AX_WASM_ISA_SIMD} AX_WASM_ISA_SIMD)
+    if(AX_WASM_ISA_SIMD MATCHES "sse")
+        message(AUTHOR_WARNING "Using SSE intrinsics for WASM ...")
+        list(APPEND _simdc_defines AX_SSE_INTRINSICS=1 __SSE__=1 __SSE2__=1)
+        list(APPEND _simdc_options -msse -msse2)
+        if(AX_ISA_LEVEL GREATER_EQUAL 2)
+            list(APPEND _simdc_defines __SSE4_1__=1)
+            list(APPEND _simdc_options -msse4.1)
+        endif()
+        list(APPEND _simdc_options -msimd128)
+    elseif(AX_WASM_ISA_SIMD MATCHES "neon")
+        message(AUTHOR_WARNING "Using NEON intrinsics for WASM ...")
+        list(APPEND _simdc_defines AX_NEON_INTRINSICS=1)
+        list(APPEND _simdc_options -mfpu=neon -msimd128)
+    endif()
+endif()
+
+if(_simdc_defines)
+    target_compile_definitions(${_AX_CORE_LIB} PUBLIC ${_simdc_defines})
+    if(_simdc_options)
+        target_compile_options(${_AX_CORE_LIB} PUBLIC ${_simdc_options})
+    endif()
 endif()
 
 # engine extensions

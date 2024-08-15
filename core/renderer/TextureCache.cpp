@@ -531,7 +531,7 @@ Texture2D* TextureCache::addImage(Image* image, std::string_view key, PixelForma
         if (it != _textures.end())
         {
             texture = it->second;
-            break;
+            return texture;
         }
 
         texture = new Texture2D();
@@ -582,7 +582,7 @@ Texture2D* TextureCache::addImage(const Data& imageData, std::string_view key)
             if (texture->initWithImage(image))
             {
 
-#if CC_ENABLE_CACHE_TEXTURE_DATA
+#if AX_ENABLE_CACHE_TEXTURE_DATA
                 VolatileTextureMgr::addImage(texture, image);
 #endif
                 _textures.emplace(key, texture);
@@ -850,10 +850,14 @@ void VolatileTextureMgr::addImage(Texture2D* tt, Image* image)
         return;
 
     VolatileTexture* vt = findVolotileTexture(tt);
-    image->retain();
-    vt->_uiImage         = image;
-    vt->_cashedImageType = VolatileTexture::kImage;
-    vt->_pixelFormat     = tt->getPixelFormat();
+
+    if(vt->_uiImage != image) {
+        AX_SAFE_RELEASE(vt->_uiImage);
+        image->retain();
+        vt->_uiImage         = image;
+        vt->_cashedImageType = VolatileTexture::kImage;
+        vt->_pixelFormat     = tt->getPixelFormat();
+    }
 }
 
 VolatileTexture* VolatileTextureMgr::findVolotileTexture(Texture2D* tt)

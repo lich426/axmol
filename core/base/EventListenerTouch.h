@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
- 
+
  https://axmol.dev/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,8 +25,8 @@
 
  ****************************************************************************/
 
-#ifndef __cocos2d_libs__CCTouchEventListener__
-#define __cocos2d_libs__CCTouchEventListener__
+#ifndef _AX_TOUCHEVENTLISTENER_H_
+#define _AX_TOUCHEVENTLISTENER_H_
 
 #include "base/EventListener.h"
 #include <vector>
@@ -136,4 +136,4 @@ NS_AX_END
 // end of base group
 /// @}
 
-#endif /* defined(__cocos2d_libs__CCTouchEventListener__) */
+#endif /* defined(_AX_TOUCHEVENTLISTENER_H_) */

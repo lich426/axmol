@@ -3,7 +3,7 @@
  Copyright (c) Microsoft Open Technologies, Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
- 
+
  https://axmol.dev/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -108,7 +108,7 @@ private:
      *  @param dirPath The path of the directory, it must be an absolute path.
      *  @return True if the directory have been created successfully, false if not.
      */
-    virtual bool createDirectory(std::string_view dirPath) const override;
+    virtual bool createDirectories(std::string_view dirPath) const override;
 
     /**
      *  Removes a directory.

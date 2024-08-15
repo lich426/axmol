@@ -25,8 +25,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef _COCOS2D_CCLABEL_H_
-#define _COCOS2D_CCLABEL_H_
+#ifndef _AX_LABEL_H_
+#define _AX_LABEL_H_
 
 #include "2d/Node.h"
 #include "renderer/CustomCommand.h"
@@ -821,7 +821,7 @@ protected:
     void updateBuffer(TextureAtlas* textureAtlas, CustomCommand& customCommand);
 
     void updateBatchCommand(BatchCommand& batch);
-    
+
     bool _contentDirty;
     bool _useDistanceField;
     bool _useA8Shader;
@@ -881,7 +881,7 @@ protected:
     Color4B _textColor;
 
     BlendFunc _blendFunc;
-   
+
     Vec2 _labelDimensions;
     Vec2 _shadowOffset;
     mutable Vec2 _scaledContentSize;  // !SDF scale
@@ -916,7 +916,7 @@ protected:
 
     std::vector<float> _linesWidth;
     std::vector<float> _linesOffsetX;
-    
+
     QuadCommand _quadCommand;
 
     std::vector<BatchCommand> _batchCommands;
@@ -945,4 +945,4 @@ private:
 
 NS_AX_END
 
-#endif /*__COCOS2D_CCLABEL_H */
+#endif /*_AX_LABEL_H */
